@@ -22,9 +22,12 @@ class SuicideModel(mesa.Model):
                              "Escape Behavior": "escape_behavior",
                              "External-Focused Change": "external_strat",
                              "Internal-Focused Change": "internal_strat",
-                             "Days": "time"}
+                             "Days": "total_time"}
         )
         StandardAgent.create_agents(model=self, n=n)
+        for agent in self.agents:
+            agent.set_friends()
+            agent.set_bullies()
     
 
     def step(self, dt):
