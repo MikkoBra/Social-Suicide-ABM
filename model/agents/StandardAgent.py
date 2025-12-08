@@ -1,5 +1,5 @@
 import mesa
-from ..parameters.next_state import (
+from ..system_updates.next_state import (
     stress,
     aversive_internal_state,
     urge_to_escape,
