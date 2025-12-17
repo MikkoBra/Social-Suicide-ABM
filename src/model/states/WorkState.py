@@ -29,12 +29,13 @@ class WorkState(State):
 
         # Increase social influence
         new_F_w = params.aversion.F_weight + 2
-        new_B_w = params.aversion.B_weight + 2
+        new_B_w = params.aversion.B_weight + 3
         params.set_aversion_params(F_weight=new_F_w, B_weight=new_B_w)
 
         # Increase urge to escape feedback
         new_feedback = params.urge_to_escape.feedback + 2
-        params.set_urge_to_escape_params(feedback=new_feedback)
+        new_A_w = params.urge_to_escape.A_weight + 1
+        params.set_urge_to_escape_params(feedback=new_feedback, A_weight=new_A_w)
     
     def to_string(self):
         return self.STATE_NAME

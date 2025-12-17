@@ -112,15 +112,16 @@ if __name__=="__main__":
     if plot == "y":
         if not isinstance(agent_df.index, pd.MultiIndex):
             agent_df.set_index(["AgentID", "Step"], inplace=True)
-        agent_to_observe = 1
-        single_agent_df = agent_df.xs(agent_to_observe, level="AgentID")
-        plot_combined(single_agent_df, agent_to_observe, label="Standard")
-        agent_to_observe = 51
-        single_agent_df = agent_df.xs(agent_to_observe, level="AgentID")
-        plot_combined(single_agent_df, agent_to_observe, label="Volatile")
-        agent_to_observe = 62
-        single_agent_df = agent_df.xs(agent_to_observe, level="AgentID")
-        plot_combined(single_agent_df, agent_to_observe, label="Popular")
-        agent_to_observe = 100
-        single_agent_df = agent_df.xs(agent_to_observe, level="AgentID")
-        plot_combined(single_agent_df, agent_to_observe, label="Bullied")
+
+        # Ensure 'Type' column exists in agent_df
+        agent_types = agent_df.reset_index().drop_duplicates("AgentID")[["AgentID", "Type"]]
+
+        # Take the first occurrence of each type
+        first_of_each_type = agent_types.groupby("Type").first().reset_index()
+
+        # Loop through each type and plot
+        for _, row in first_of_each_type.iterrows():
+            agent_id = row["AgentID"]
+            label = row["Type"]
+            single_agent_df = agent_df.xs(agent_id, level="AgentID")
+            plot_combined(single_agent_df, agent_id, label=label)
