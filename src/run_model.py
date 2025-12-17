@@ -74,7 +74,7 @@ def plot_combined(agent_df, agent_id, label=None):
     # --- Optional: vertical lines to mark day boundaries ---
     max_day = int(agent_df["Time"].max()) + 1
     for d in range(max_day):
-        ax_state.axvline(x=d, color="gray", alpha=0.3, linestyle="--")
+        ax_state.axvline(x=d, color="red", alpha=1, linestyle="--")
 
     # --- Legend for states ---
     legend_handles = [Patch(facecolor=color, label=state) for state, color in state_palette.items()]
@@ -99,7 +99,7 @@ if __name__=="__main__":
             model.step(dt)
 
         # Ensure folder exists
-        data_folder = Path("data")
+        data_folder = Path("output")
         data_folder.mkdir(parents=True, exist_ok=True)
 
         # Save full agent DataFrame
@@ -107,7 +107,7 @@ if __name__=="__main__":
         csv_path = data_folder / f"{T}_days_{N_agents}_agents.csv"
         agent_df.to_csv(csv_path, index=True)
     else:
-        agent_df = pd.read_csv("data/14_days_100_agents.csv")
+        agent_df = pd.read_csv("output/14_days_100_agents.csv")
     plot = input("Generate plot? (y/n)\n> ")
     if plot == "y":
         if not isinstance(agent_df.index, pd.MultiIndex):
@@ -115,12 +115,12 @@ if __name__=="__main__":
         agent_to_observe = 1
         single_agent_df = agent_df.xs(agent_to_observe, level="AgentID")
         plot_combined(single_agent_df, agent_to_observe, label="Standard")
-        agent_to_observe = 47
+        agent_to_observe = 51
         single_agent_df = agent_df.xs(agent_to_observe, level="AgentID")
         plot_combined(single_agent_df, agent_to_observe, label="Volatile")
-        agent_to_observe = 59
+        agent_to_observe = 62
         single_agent_df = agent_df.xs(agent_to_observe, level="AgentID")
         plot_combined(single_agent_df, agent_to_observe, label="Popular")
-        agent_to_observe = 80
+        agent_to_observe = 100
         single_agent_df = agent_df.xs(agent_to_observe, level="AgentID")
         plot_combined(single_agent_df, agent_to_observe, label="Bullied")

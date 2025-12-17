@@ -1,6 +1,5 @@
 from abc import ABC, abstractmethod
 from model.parameters.AbstractParameters import Parameters
-from model.system_updates.StateParameters import StateParameters
 
 class State(ABC):
     """

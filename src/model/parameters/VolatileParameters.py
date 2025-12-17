@@ -9,7 +9,7 @@ class VolatileParameters(DefaultParameters):
     def set_stress_params(
             self,
             mean=0.5,
-            sigma=0.3,
+            sigma=0.22,
             reversion=0.5,
             E_weight=3.0,
         ):

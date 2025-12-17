@@ -4,9 +4,9 @@ from model.system_updates.AgentUpdater import (
     AgentUpdater
 )
 from model.parameters.DefaultParameters import DefaultParameters
-from model.system_updates.StateParameters import StateParameters
+from model.parameters.StateParameters import StateParameters
 from model.system_updates.StateManager import StateManager
-from model.system_updates.states.SleepState import SleepState
+from model.states.SleepState import SleepState
 SOCIAL_WEIGHT_IDX = 1
 
 

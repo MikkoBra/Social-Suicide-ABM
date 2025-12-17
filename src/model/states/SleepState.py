@@ -1,5 +1,5 @@
-from model.system_updates.states.AbstractState import State
-from model.system_updates.states.MorningState import MorningState
+from model.states.AbstractState import State
+from model.states.MorningState import MorningState
 from errors.StateError import PreviousStateError
 from Constants import Constants
 import numpy as np
